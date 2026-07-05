@@ -7,7 +7,6 @@ import bs58 from "bs58";
 import { useWallet } from "@solana/wallet-adapter-react";
 import { useWalletModal } from "@solana/wallet-adapter-react-ui";
 import {
-	AlertCircle,
 	AtSignIcon,
 	ChevronLeftIcon,
 	Loader2,
@@ -15,8 +14,10 @@ import {
 	UserPlus,
 	Wallet,
 } from "lucide-react";
+import { toast } from "sonner";
 import { AuthDivider } from "@/components/auth-divider";
 import { FloatingPaths } from "@/components/floating-paths";
+import { GoogleIcon } from "@/components/google-icon";
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/Button";
 import {
@@ -39,11 +40,7 @@ function getFriendlyAuthError(mode: AuthMode, message?: string) {
 	if (normalized.includes("support message signing")) {
 		return "This wallet cannot be used for sign-in here.";
 	}
-	if (
-		normalized.includes("nonce") ||
-		normalized.includes("challenge") ||
-		normalized.includes("expired")
-	) {
+	if (normalized.includes("nonce") || normalized.includes("challenge") || normalized.includes("expired")) {
 		return "Your sign-in request expired. Please try again.";
 	}
 	if (normalized.includes("verification") || normalized.includes("signature")) {
@@ -90,17 +87,16 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [fullName, setFullName] = useState("");
-	const [error, setError] = useState("");
 	const [isPending, startTransition] = useTransition();
 	const [isSigning, setIsSigning] = useState(false);
 	const [isSubmittingEmail, setIsSubmittingEmail] = useState(false);
+	const [isGooglePending, setIsGooglePending] = useState(false);
 
 	const walletAddress = publicKey?.toBase58() ?? "";
-	const isLoading = isSigning || isPending || isSubmittingEmail;
+	const isLoading = isSigning || isPending || isSubmittingEmail || isGooglePending;
 
 	const handleTabChange = (nextMode: AuthMode) => {
 		setMode(nextMode);
-		setError("");
 	};
 
 	const redirectAfterAuth = () => {
@@ -110,18 +106,34 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 		});
 	};
 
+	const handleGoogleSignIn = async () => {
+		setIsGooglePending(true);
+		const toastId = toast.loading("Connecting to Google...");
+		try {
+			await authClient.signIn.social({
+				provider: "google",
+				callbackURL: nextPath || "/app",
+			});
+			toast.success("Redirecting...", { id: toastId });
+		} catch (err) {
+			toast.error(getFriendlyAuthError(mode, err instanceof Error ? err.message : undefined), { id: toastId });
+			setIsGooglePending(false);
+		}
+	};
+
 	const handleWalletSignIn = async () => {
 		if (!publicKey) {
 			setVisible(true);
+			toast.info("Connect your wallet to continue.");
 			return;
 		}
 		if (!signMessage) {
-			setError("This wallet cannot be used for sign-in here.");
+			toast.error("This wallet cannot be used for sign-in here.");
 			return;
 		}
 
-		setError("");
 		setIsSigning(true);
+		const toastId = toast.loading("Waiting for wallet signature...");
 
 		try {
 			const nonceResponse = await fetch("/api/auth/nonce", {
@@ -138,9 +150,13 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 				throw new Error(noncePayload.error || "challenge_failed");
 			}
 
+			toast.loading("Sign the message in your wallet...", { id: toastId });
+
 			const messageBytes = new TextEncoder().encode(noncePayload.message);
 			const signatureBytes = await signMessage(messageBytes);
 			const signature = bs58.encode(signatureBytes);
+
+			toast.loading("Verifying signature...", { id: toastId });
 
 			const verifyResponse = await fetch("/api/auth/verify-wallet", {
 				method: "POST",
@@ -153,13 +169,12 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 				throw new Error(verifyPayload.error || "verification_failed");
 			}
 
+			toast.success("Wallet verified! Signing in...", { id: toastId });
 			redirectAfterAuth();
 		} catch (err) {
-			setError(
-				getFriendlyAuthError(
-					mode,
-					err instanceof Error ? err.message : undefined,
-				),
+			toast.error(
+				getFriendlyAuthError(mode, err instanceof Error ? err.message : undefined),
+				{ id: toastId },
 			);
 		} finally {
 			setIsSigning(false);
@@ -168,22 +183,22 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 
 	const handleEmailSubmit = async (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		setError("");
 
 		if (!email.trim()) {
-			setError("Please enter your email.");
+			toast.error("Please enter your email.");
 			return;
 		}
 		if (!password.trim()) {
-			setError("Please enter your password.");
+			toast.error("Please enter your password.");
 			return;
 		}
 		if (mode === "register" && !fullName.trim()) {
-			setError("Please enter your full name.");
+			toast.error("Please enter your full name.");
 			return;
 		}
 
 		setIsSubmittingEmail(true);
+		const toastId = toast.loading(mode === "signin" ? "Signing in..." : "Creating account...");
 
 		try {
 			const result =
@@ -202,17 +217,19 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 						});
 
 			if (result.error) {
-				setError(getFriendlyAuthError(mode, result.error.message));
+				toast.error(getFriendlyAuthError(mode, result.error.message), { id: toastId });
 				return;
 			}
 
+			toast.success(
+				mode === "signin" ? "Welcome back!" : "Account created! Welcome to Omena.",
+				{ id: toastId },
+			);
 			redirectAfterAuth();
 		} catch (err) {
-			setError(
-				getFriendlyAuthError(
-					mode,
-					err instanceof Error ? err.message : undefined,
-				),
+			toast.error(
+				getFriendlyAuthError(mode, err instanceof Error ? err.message : undefined),
+				{ id: toastId },
 			);
 		} finally {
 			setIsSubmittingEmail(false);
@@ -223,17 +240,17 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 		<main className="relative md:h-screen md:overflow-hidden lg:grid lg:grid-cols-2">
 			<div className="relative hidden h-full flex-col border-r bg-secondary p-10 lg:flex dark:bg-secondary/20">
 				<div className="absolute inset-0 bg-linear-to-b from-transparent via-transparent to-background" />
-				<Logo className="mr-auto h-4.5" />
+				<Logo className="mr-auto h-12" />
 
 				<div className="z-10 mt-auto">
 					<blockquote className="space-y-2">
 						<p className="text-xl">
-							&ldquo;Omena AI helps me analyze opportunities faster, make
-							data-driven decisions, and manage my digital assets with
-							confidence.&rdquo;
+							&ldquo;Omena&apos;s behavior signals flagged a suspicious holder
+							pattern two hours before the exit. The onchain context it surfaces
+							is unlike anything else in the space.&rdquo;
 						</p>
 						<footer className="font-mono font-semibold text-sm">
-							~ Sarah Lim, Investor
+							~ Marcus T., Crypto Fund Manager
 						</footer>
 					</blockquote>
 				</div>
@@ -264,7 +281,7 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 				</Button>
 
 				<div className="mx-auto space-y-4 sm:w-sm">
-					<Logo className="h-4.5 lg:hidden" />
+					<Logo className="h-12 lg:hidden" />
 					<div className="flex flex-col space-y-1">
 						<h1 className="font-bold text-2xl tracking-wide">
 							{mode === "signin" ? "Sign In" : "Create Account"}
@@ -321,9 +338,7 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 							<InputGroup>
 								<InputGroupInput
 									id="password"
-									autoComplete={
-										mode === "signin" ? "current-password" : "new-password"
-									}
+									autoComplete={mode === "signin" ? "current-password" : "new-password"}
 									onChange={(event) => setPassword(event.target.value)}
 									placeholder="Password"
 									type="password"
@@ -347,13 +362,6 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 						</Button>
 					</form>
 
-					{error && (
-						<div className="flex items-start gap-2 rounded-md border border-destructive/30 bg-destructive/10 px-3 py-2 text-sm text-foreground">
-							<AlertCircle className="mt-0.5 shrink-0 text-destructive" />
-							<span>{error}</span>
-						</div>
-					)}
-
 					<AuthDivider>OR</AuthDivider>
 
 					<Button
@@ -376,6 +384,21 @@ export function AuthPage({ nextPath = "/app" }: AuthPageProps) {
 							{walletAddress}
 						</p>
 					)}
+
+					<Button
+						className="w-full"
+						type="button"
+						variant="outline"
+						disabled={isLoading}
+						onClick={handleGoogleSignIn}
+					>
+						{isGooglePending ? (
+							<Loader2 className="animate-spin" data-icon="inline-start" />
+						) : (
+							<GoogleIcon className="h-4 w-4" data-icon="inline-start" />
+						)}
+						Continue with Google
+					</Button>
 
 					<p className="text-center text-sm text-muted-foreground">
 						{mode === "signin" ? (

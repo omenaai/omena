@@ -11,7 +11,7 @@ COPY package.json pnpm-lock.yaml pnpm-workspace.yaml turbo.json ./
 COPY apps/api/package.json ./apps/api/package.json
 COPY apps/web/package.json ./apps/web/package.json
 
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile --filter @omenaai/api...
 
 # ── 2. Build ───────────────────────────────────────────────────────────────
 FROM base AS builder
@@ -40,5 +40,8 @@ USER apiuser
 
 EXPOSE 8787
 ENV PORT=8787
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+  CMD wget -qO- http://localhost:8787/health || exit 1
 
 CMD ["node", "dist/index.js"]

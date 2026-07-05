@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, JetBrains_Mono, Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import "./globals.css";
 import { WalletContextProvider } from "@/components/providers/WalletContextProvider";
 import { cn } from "@/lib/utils";
@@ -28,6 +29,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <body className={`${jakarta.variable} ${mono.variable} min-h-screen flex flex-col antialiased bg-background text-foreground`}>
         <WalletContextProvider>{children}</WalletContextProvider>
+        <Toaster richColors position="top-center" />
       </body>
     </html>
   );

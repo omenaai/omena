@@ -1,13 +1,32 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
+import { cors } from "hono/cors";
+import { logger } from "hono/logger";
+
+const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ?? "http://localhost:3000")
+  .split(",")
+  .map((o) => o.trim());
 
 const app = new Hono();
+
+app.use(logger());
+
+app.use(
+  "/*",
+  cors({
+    origin: (origin) => (ALLOWED_ORIGINS.includes(origin) ? origin : ALLOWED_ORIGINS[0]),
+    allowMethods: ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"],
+    allowHeaders: ["Content-Type", "Authorization"],
+    credentials: true,
+    maxAge: 86400,
+  }),
+);
 
 app.get("/", (c) =>
   c.json({
     name: "omenaai-api",
+    version: "0.1.0",
     status: "ok",
-    message: "API runtime online",
   }),
 );
 
@@ -15,17 +34,16 @@ app.get("/health", (c) =>
   c.json({
     status: "ok",
     uptime: process.uptime(),
+    timestamp: new Date().toISOString(),
   }),
 );
 
 const port = Number(process.env.PORT ?? 8787);
 
 serve(
-  {
-    fetch: app.fetch,
-    port,
-  },
+  { fetch: app.fetch, port },
   (info) => {
-    console.log(`API ready at http://localhost:${info.port}`);
+    console.log(`[api] ready → http://localhost:${info.port}`);
+    console.log(`[api] allowed origins: ${ALLOWED_ORIGINS.join(", ")}`);
   },
 );

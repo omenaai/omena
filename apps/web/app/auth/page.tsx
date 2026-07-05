@@ -1,11 +1,13 @@
 import Link from "next/link";
 import { Clock3 } from "lucide-react";
+import { AuthErrorToast } from "@/components/auth-error-toast";
 import { AuthPage as AuthPageContent } from "@/components/auth-page";
 import { Badge } from "@/components/ui/Badge";
 
 type AuthPageProps = {
   searchParams: Promise<{
     next?: string;
+    error?: string;
   }>;
 };
 
@@ -20,10 +22,16 @@ function getSafeNextPath(nextPath?: string) {
 export default async function AuthPage({ searchParams }: AuthPageProps) {
   const params = await searchParams;
   const nextPath = getSafeNextPath(params.next);
+  const authError = params.error;
   const isProduction = process.env.NODE_ENV === "production";
 
   if (!isProduction) {
-    return <AuthPageContent nextPath={nextPath} />;
+    return (
+      <>
+        <AuthErrorToast error={authError} />
+        <AuthPageContent nextPath={nextPath} />
+      </>
+    );
   }
 
   return (

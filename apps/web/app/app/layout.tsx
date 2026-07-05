@@ -1,6 +1,6 @@
 import type { ReactNode } from "react";
 import { redirect } from "next/navigation";
-import { AppShell } from "@/components/app/AppShell";
+import { AppShell } from "@/components/app-shell";
 import { getRequestSession } from "@/lib/auth/session";
 
 export default async function DashboardLayout({ children }: { children: ReactNode }) {
@@ -10,5 +10,15 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     redirect("/auth?next=/app");
   }
 
-  return <AppShell>{children}</AppShell>;
+  const displayName = session.name
+    ?? (session.walletAddress
+      ? `${session.walletAddress.slice(0, 4)}...${session.walletAddress.slice(-4)}`
+      : "User");
+
+  const user = {
+    name: displayName,
+    email: session.email ?? session.walletAddress ?? "",
+  };
+
+  return <AppShell user={user}>{children}</AppShell>;
 }

@@ -10,13 +10,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@hono/node-server": "latest",
-    "hono": "latest"
+    "@hono/node-server": "2.0.8",
+    "hono": "4.12.27"
   },
   "devDependencies": {
-    "@types/node": "latest",
-    "tsup": "latest",
-    "tsx": "latest",
-    "typescript": "latest"
+    "@types/node": "26.1.0",
+    "tsup": "8.5.1",
+    "tsx": "4.23.0",
+    "typescript": "6.0.3"
   }
 }
