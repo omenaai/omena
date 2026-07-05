@@ -1,0 +1,151 @@
+"use client";
+
+import React, { useState } from "react";
+import { Menu, X } from "lucide-react";
+import { RiTwitterXFill, RiTelegram2Fill } from "react-icons/ri";
+import Link from "next/link";
+import Image from "next/image";
+import { Button } from "@/components/ui/Button";
+import { siteConfig } from "@/lib/site";
+import { Marquee } from "@/components/ui/Marquee";
+
+const navLinks = [
+  { name: "Home", href: "/" },
+  { name: "Docs", href: "/docs" },
+  { name: "Litepaper", href: "/litepaper" },
+  { name: "Roadmap", href: "/roadmap" },
+];
+
+const announcements = [
+  "UNLOCKED 50+ REAL-TIME WEB3 DATA STREAMS | OMENA RESEARCH LITERATION V1.0 IS NOW LIVE | TRANSFORMING ONCHAIN DATA INTO INTELLIGENCE",
+];
+
+export function Navbar() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <header className="sticky top-0 z-50 flex w-full flex-col border-b border-border bg-background">
+      <div className="mx-auto grid h-16 w-full max-w-[1200px] grid-cols-[1fr_auto] items-center gap-6 px-6 lg:grid-cols-3">
+        <div className="flex items-center lg:justify-self-start">
+          <Link className="flex shrink-0 items-center" href="/" aria-label="OMENA home">
+            <Image
+              src="/logo.png"
+              alt="OMENA"
+              width={132}
+              height={34}
+              priority
+              className="h-8 w-auto object-contain"
+            />
+          </Link>
+        </div>
+
+        <nav className="hidden items-center justify-center gap-7 lg:flex lg:justify-self-center" aria-label="Primary navigation">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              className="font-body-md relative text-[10px] font-bold uppercase tracking-wider text-foreground/80 transition-colors after:absolute after:left-0 after:-bottom-1 after:h-px after:w-0 after:bg-primary after:transition-all hover:text-foreground hover:after:w-full"
+              href={link.href}
+            >
+              {link.name}
+            </Link>
+          ))}
+        </nav>
+
+        <div className="hidden items-center justify-end gap-2 lg:flex lg:justify-self-end">
+          <Link
+            href={siteConfig.social.telegram}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Telegram"
+            title="Telegram"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:border-primary/20 hover:bg-muted"
+          >
+            <RiTelegram2Fill className="h-4 w-4" />
+          </Link>
+
+          <Link
+            href={siteConfig.social.x}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="X"
+            title="X"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:border-primary/20 hover:bg-muted"
+          >
+            <RiTwitterXFill className="h-4 w-4" />
+          </Link>
+
+          <span className="inline-flex items-center rounded-full border border-border bg-muted px-3.5 py-2 text-[10px] font-black uppercase tracking-wider text-muted-foreground">
+            Sign In Soon
+          </span>
+        </div>
+
+        <div className="flex items-center justify-end lg:hidden">
+          <Button
+            variant="ghost"
+            size="icon-sm"
+            onClick={() => setIsOpen(!isOpen)}
+            className="cursor-pointer text-muted-foreground hover:text-primary"
+            aria-label="Toggle Menu"
+            aria-expanded={isOpen}
+          >
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </Button>
+        </div>
+      </div>
+
+      <div className="w-full overflow-hidden bg-background">
+        <Marquee className="mx-auto max-w-[1200px] px-6 py-2.5 text-[10px] font-bold uppercase tracking-wider text-foreground/75 [--duration:42s]" repeat={4}>
+          {announcements.map((item) => (
+            <div key={item} className="flex items-center gap-4 whitespace-nowrap">
+              <span>{item}</span>
+            </div>
+          ))}
+        </Marquee>
+      </div>
+
+      {isOpen && (
+        <div className="absolute left-6 right-6 top-16 z-50 space-y-4 rounded-3xl border border-border bg-card p-5 shadow-ambient animate-in fade-in slide-in-from-top-2 duration-200">
+          <div className="flex flex-col gap-3 pl-2 text-left">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                onClick={() => setIsOpen(false)}
+                className="text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+                href={link.href}
+              >
+                {link.name}
+              </Link>
+            ))}
+          </div>
+          <div className="flex h-10 w-full items-center justify-center rounded-full border border-border bg-muted text-xs font-black uppercase tracking-wider text-muted-foreground">
+            Sign In Soon
+          </div>
+          <div className="grid grid-cols-2 gap-2">
+            <Link
+              href={siteConfig.social.x}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsOpen(false)}
+              aria-label="X"
+              title="X"
+              className="flex h-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted/60"
+            >
+              <RiTwitterXFill className="h-4 w-4" />
+            </Link>
+            <Link
+              href={siteConfig.social.telegram}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsOpen(false)}
+              aria-label="Telegram"
+              title="Telegram"
+              className="flex h-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted/60"
+            >
+              <RiTelegram2Fill className="h-4 w-4" />
+            </Link>
+          </div>
+        </div>
+      )}
+    </header>
+  );
+}

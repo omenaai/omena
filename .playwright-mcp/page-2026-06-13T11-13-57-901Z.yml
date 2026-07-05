@@ -1,0 +1,271 @@
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]:
+      - navigation [ref=e4]:
+        - link "OMENA" [ref=e5] [cursor=pointer]:
+          - /url: "#"
+          - img [ref=e6]
+          - generic [ref=e8]: OMENA
+        - generic [ref=e9]:
+          - link "Platform" [ref=e10] [cursor=pointer]:
+            - /url: "#"
+          - link "Solutions" [ref=e11] [cursor=pointer]:
+            - /url: "#"
+          - link "Enterprise" [ref=e12] [cursor=pointer]:
+            - /url: "#"
+          - link "Resources" [ref=e13] [cursor=pointer]:
+            - /url: "#"
+          - link "Pricing" [ref=e14] [cursor=pointer]:
+            - /url: "#"
+        - generic [ref=e15]:
+          - link "Log In" [ref=e16] [cursor=pointer]:
+            - /url: "#"
+          - button "Get started" [ref=e17]
+      - generic [ref=e19]:
+        - generic [ref=e22]: Unlocked 50+ Real-Time Web3 Data Streams
+        - generic [ref=e25]: "Join us at Omena Hackathon: July 12-14 in SF"
+        - generic [ref=e28]: Deploy your first agent in under 2 minutes
+    - main [ref=e29]:
+      - generic [ref=e30]:
+        - generic [ref=e31]:
+          - heading "The Agent Intelligence Layer where trust meets insights" [level=1] [ref=e32]
+          - paragraph [ref=e33]: Finally - anyone can get onchain insights grounded in the facts of their smart contracts. Omena has a flexible approach to context that earns trust without slowing you down.
+          - generic [ref=e34]:
+            - button "Get started for free" [ref=e35]
+            - link "Request a demo" [ref=e36] [cursor=pointer]:
+              - /url: "#"
+        - generic [ref=e37]:
+          - generic [ref=e38]:
+            - generic [ref=e39]:
+              - generic [ref=e40]:
+                - generic [ref=e41]:
+                  - img [ref=e42]
+                  - text: Agentic data notebooks
+                - generic [ref=e44]: Notebook
+              - heading "OMENA Wallet Profiler" [level=3] [ref=e45]
+              - paragraph [ref=e46]: "Wallet: 0x71a9...f4b Analysis"
+              - generic [ref=e47]:
+                - paragraph [ref=e48]: // SQL Cell - Extract Transactions
+                - paragraph [ref=e49]: select block_time, value_usd, target_protocol
+                - paragraph [ref=e50]: from solana.transactions
+                - paragraph [ref=e51]: where sender = '0x71a9...'
+              - generic [ref=e52]:
+                - generic [ref=e53]:
+                  - generic [ref=e54]: 12:04:15
+                  - generic [ref=e55]: $42,300.00 Raydium Pool
+                - generic [ref=e56]:
+                  - generic [ref=e57]: 12:04:15
+                  - generic [ref=e58]: $38,700.00 Orca Router
+                - generic [ref=e59]:
+                  - generic [ref=e60]: 12:04:15
+                  - generic [ref=e61]: $33,100.00 Jupiter Agg.
+            - generic [ref=e62]:
+              - generic [ref=e63]:
+                - img [ref=e64]
+                - text: Beautiful data apps
+              - heading "Security Cockpit" [level=3] [ref=e66]
+              - paragraph [ref=e67]: Real-time threat status monitor.
+              - generic [ref=e68]:
+                - generic [ref=e69]:
+                  - paragraph [ref=e70]: Solana Mainnet
+                  - paragraph [ref=e71]: 99.9% Uptime
+                - generic [ref=e72]:
+                  - paragraph [ref=e73]: Threat Level
+                  - paragraph [ref=e74]: 0 Threats
+          - generic [ref=e75]:
+            - generic [ref=e76]:
+              - generic [ref=e77]:
+                - img [ref=e78]
+                - text: Conversational self-serve
+              - generic [ref=e80]: Investigate
+            - generic [ref=e82]: Can you analyze the risk score of the new Raydium liquidity contract?
+            - generic [ref=e83]:
+              - paragraph [ref=e84]: I'll run a comprehensive audit on the Raydium pool contract. Checking transaction logs, liquidity locks, and compiler warnings.
+              - paragraph [ref=e85]: Thought for 12 seconds
+              - paragraph [ref=e86]: "Raydium contract risk report:"
+              - generic [ref=e87]:
+                - generic [ref=e88]:
+                  - generic [ref=e89]: Liquidity Lock (365d)
+                  - generic [ref=e90]:
+                    - img [ref=e91]
+                    - text: Low Risk
+                - generic [ref=e93]:
+                  - generic [ref=e94]: Owner Privileges (Multisig)
+                  - generic [ref=e95]:
+                    - img [ref=e96]
+                    - text: Low Risk
+                - generic [ref=e98]:
+                  - generic [ref=e99]: Flashloan Security
+                  - generic [ref=e100]:
+                    - img [ref=e101]
+                    - text: Safe
+                - generic [ref=e103]:
+                  - generic [ref=e104]: Trust Score
+                  - generic [ref=e105]:
+                    - img [ref=e106]
+                    - text: 98/100
+              - img [ref=e109]
+            - generic [ref=e111]:
+              - generic [ref=e112]: Ask Omena agent another question...
+              - generic [ref=e113]: Mainnet RPC
+            - generic [ref=e114]:
+              - img [ref=e115]
+              - text: Omena Agent
+      - generic [ref=e117]:
+        - generic [ref=e118]:
+          - text: EFFORTLESS FINANCE
+          - heading "Effortless global financial management" [level=2] [ref=e119]
+          - paragraph [ref=e120]: Designed for high-performance agentic workflows.
+        - generic [ref=e121]:
+          - generic [ref=e123]:
+            - generic [ref=e124]:
+              - img [ref=e126]
+              - heading "Intelligence Engine" [level=3] [ref=e128]
+              - paragraph [ref=e129]: Our core proprietary engine that processes raw transaction data through machine learning models to output structured, risk-scored insights specifically formatted for autonomous agent consumption.
+            - generic [ref=e130]:
+              - generic [ref=e131]:
+                - generic [ref=e132]:
+                  - generic [ref=e133]: M
+                  - generic [ref=e134]:
+                    - paragraph [ref=e135]: Michael Johnson
+                    - paragraph [ref=e136]: Received, May 10 4:44 PM
+                - generic [ref=e137]: +$2050.10
+              - generic [ref=e138]:
+                - generic [ref=e139]:
+                  - generic [ref=e140]: E
+                  - generic [ref=e141]:
+                    - paragraph [ref=e142]: Emily Taylor
+                    - paragraph [ref=e143]: Sent, May 12 3:21 AM
+                - generic [ref=e144]: "-$93.50"
+              - generic [ref=e145]:
+                - generic [ref=e146]:
+                  - generic [ref=e147]: S
+                  - generic [ref=e148]:
+                    - paragraph [ref=e149]: Sophia Jackson
+                    - paragraph [ref=e150]: Received, May 10 10:10 PM
+                - generic [ref=e151]: +$810.90
+          - generic [ref=e152]:
+            - generic [ref=e153]:
+              - img [ref=e155]
+              - generic [ref=e157]: Data Indexer
+            - generic [ref=e158]:
+              - generic [ref=e159]:
+                - generic [ref=e160]:
+                  - generic [ref=e161]: L
+                  - text: Litecoin
+                - generic [ref=e162]: $9,566.00
+              - generic [ref=e163]:
+                - generic [ref=e164]:
+                  - generic [ref=e165]: D
+                  - text: Dogecoin
+                - generic [ref=e166]: $1,290.00
+              - generic [ref=e167]:
+                - generic [ref=e168]:
+                  - generic [ref=e169]: D
+                  - text: Dimecoin
+                - generic [ref=e170]: $5,500.00
+              - generic [ref=e171]:
+                - generic [ref=e172]:
+                  - generic [ref=e173]: S
+                  - text: Shiba-Inu coin
+                - generic [ref=e174]: $7,044.19
+          - generic [ref=e175]:
+            - img [ref=e177]
+            - heading "Risk Assessment Protocol" [level=3] [ref=e179]
+            - paragraph [ref=e180]: Secure digital interactions. Continuous evaluation of smart contract vulnerabilities.
+          - generic [ref=e181]:
+            - img [ref=e182]
+            - heading "API First Interface" [level=3] [ref=e184]
+            - paragraph [ref=e185]: Sub-second latency indexing of multiple chains. Fully-typed REST & WebSocket streams built for autonomous agent consumption.
+      - generic [ref=e187]:
+        - generic [ref=e188]:
+          - text: GLOBAL TRANSFERS
+          - heading "Your intelligence layer just got global" [level=2] [ref=e189]
+          - paragraph [ref=e190]: Deep context, real-time threat detection, and modular SDK hooks across multiple chains.
+        - generic [ref=e191]:
+          - generic [ref=e192]:
+            - generic [ref=e193]:
+              - heading "Trading Agents" [level=4] [ref=e194]
+              - paragraph [ref=e195]: Algorithmic execution based on sentiment and flow.
+            - generic [ref=e196]:
+              - heading "DeFi Monitoring" [level=4] [ref=e197]
+              - paragraph [ref=e198]: Track TVL shifts and yield farming opportunities.
+            - generic [ref=e199]:
+              - heading "Risk Scoring" [level=4] [ref=e200]
+              - paragraph [ref=e201]: Real-time wallet and contract trust scores.
+          - img [ref=e203]
+          - generic [ref=e205]:
+            - generic [ref=e206]:
+              - heading "Onchain Research" [level=4] [ref=e207]
+              - paragraph [ref=e208]: Deep dive into historical wallet behaviors.
+            - generic [ref=e209]:
+              - heading "Alert Systems" [level=4] [ref=e210]
+              - paragraph [ref=e211]: Custom webhooks for specific onchain events.
+            - generic [ref=e212]:
+              - heading "Developer APIs" [level=4] [ref=e213]
+              - paragraph [ref=e214]: Integrate intelligence directly into dApps.
+      - generic [ref=e216]:
+        - generic [ref=e217]:
+          - text: 50+
+          - generic [ref=e218]: Data Sources
+        - generic [ref=e219]:
+          - text: 24/7
+          - generic [ref=e220]: Monitoring
+        - generic [ref=e221]:
+          - text: 99.9%
+          - generic [ref=e222]: Uptime
+        - generic [ref=e223]:
+          - img [ref=e224]
+          - generic [ref=e226]: API Agent Ready
+      - generic [ref=e227]:
+        - generic [ref=e228]:
+          - generic [ref=e233]: agent.ts
+          - code [ref=e235]: "import { OmenaClient } from '@omena/sdk'; const client = new OmenaClient({ apiKey: process.env.OMENA_KEY }); async function analyzeTarget(address: string) { const analysis = await client.signals.analyze({ target: address, depth: 'comprehensive', includeRiskScore: true }); if (analysis.riskScore > 80) { console.log('High risk detected', analysis.flags); } else { await executeTrade(address); } }"
+        - generic [ref=e236]:
+          - heading "Developer-first integration." [level=2] [ref=e237]
+          - paragraph [ref=e238]: Build robust agents with a few lines of code. Our SDK handles the complexity of cross-chain data normalization and risk modeling.
+          - list [ref=e239]:
+            - listitem [ref=e240]:
+              - img [ref=e242]
+              - text: Typed SDKs for TypeScript and Python
+            - listitem [ref=e244]:
+              - img [ref=e246]
+              - text: Comprehensive risk scoring models
+            - listitem [ref=e248]:
+              - img [ref=e250]
+              - text: WebSocket support for live streaming
+            - listitem [ref=e252]:
+              - img [ref=e254]
+              - text: Detailed endpoint documentation
+      - generic [ref=e257]:
+        - generic [ref=e258]:
+          - text: CALL TO ACTION
+          - heading "Have questions about onchain AI? Write to us and get answers!" [level=2] [ref=e259]
+          - paragraph [ref=e260]: Get access to the most comprehensive API for agentic workflows today.
+        - generic [ref=e261]:
+          - generic [ref=e262]:
+            - generic [ref=e263]: Full Name *
+            - textbox "Enter your name" [ref=e264]
+          - generic [ref=e265]:
+            - generic [ref=e266]: Ask A Question *
+            - textbox "Enter your question" [ref=e267]
+          - button "Send A Question" [ref=e268]
+    - contentinfo [ref=e269]:
+      - link "OMENA" [ref=e270] [cursor=pointer]:
+        - /url: "#"
+        - img [ref=e271]
+        - text: OMENA
+      - paragraph [ref=e273]: © 2024 Omena AI. The Agent Intelligence Layer for Web3.
+      - generic [ref=e274]:
+        - link "Terms" [ref=e275] [cursor=pointer]:
+          - /url: "#"
+        - link "Privacy" [ref=e276] [cursor=pointer]:
+          - /url: "#"
+        - link "Twitter" [ref=e277] [cursor=pointer]:
+          - /url: "#"
+        - link "Github" [ref=e278] [cursor=pointer]:
+          - /url: "#"
+        - link "Discord" [ref=e279] [cursor=pointer]:
+          - /url: "#"
+  - button "Open Next.js Dev Tools" [ref=e285] [cursor=pointer]:
+    - img [ref=e286]

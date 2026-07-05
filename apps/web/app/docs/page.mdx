@@ -1,0 +1,188 @@
+import { DocShell } from "@/components/docs/DocShell";
+
+export const metadata = {
+  title: "OMENA Technical Documentation v0.2",
+  description: "Phase 1 dashboard architecture, intelligence modules, API overview, and delivery notes for OMENA.",
+};
+
+export default function Layout({ children }) {
+  return (
+    <DocShell
+      title="OMENA Technical Documentation v0.2"
+      description="Phase 1 turns OMENA into a usable token analyzer dashboard: Solana token in, structured intelligence report out."
+      links={[
+        { href: "/docs", label: "Technical Docs" },
+        { href: "/litepaper", label: "Litepaper" },
+        { href: "/app", label: "Dashboard" },
+        { href: "/roadmap", label: "Roadmap" },
+      ]}
+      sections={[
+        { href: "#architecture", label: "Architecture" },
+        { href: "#risk-intelligence", label: "Risk Intelligence" },
+        { href: "#behavior-intelligence", label: "Behavior Intelligence" },
+        { href: "#signal-intelligence", label: "Signal Intelligence" },
+        { href: "#context-intelligence", label: "Context Intelligence" },
+        { href: "#api-overview", label: "API Overview" },
+        { href: "#faq", label: "FAQ" },
+        { href: "#roadmap", label: "Roadmap" },
+      ]}
+    >
+      {children}
+    </DocShell>
+  );
+}
+
+<span id="architecture" />
+
+## Chapter 3: Architecture
+
+Phase 1 is designed as a minimal dashboard product, not a trading interface.
+
+User flow:
+
+1. User opens `/app`
+2. User pastes a Solana token address
+3. OMENA validates the address
+4. OMENA fetches market data from DexScreener
+5. OMENA runs Risk, Behavior, Signal, and Context modules
+6. OMENA returns a readable report in `/app/analyze`
+
+Current runtime layers:
+
+### Layer 1 - Web App
+
+- Next.js App Router frontend
+- Landing page
+- Dashboard routes
+- Docs pages
+
+### Layer 2 - Data and Analysis
+
+- DexScreener market snapshot
+- Optional Helius enrichment
+- Modular intelligence functions
+- Mock fallback when live data is incomplete
+
+<span id="risk-intelligence" />
+
+## Chapter 4: Risk Intelligence
+
+### Core Capabilities
+
+- Liquidity quality scoring
+- Pair age and market depth checks
+- Volume versus liquidity stress checks
+- Plain-language risk summary
+
+### Output
+
+```json
+{
+  "level": "Low | Medium | High",
+  "score": 0,
+  "summary": "Readable explanation",
+  "flags": [],
+  "liquidityHealth": "string",
+  "holderConcentration": "string"
+}
+```
+
+<span id="behavior-intelligence" />
+
+## Chapter 5: Behavior Intelligence
+
+### Core Capabilities
+
+- Buy versus sell activity interpretation
+- Accumulation versus distribution status
+- Deployer visibility note
+- Graceful partial-data handling
+
+<span id="signal-intelligence" />
+
+## Chapter 6: Signal Intelligence
+
+### Core Capabilities
+
+- 24h price movement review
+- Volume abnormality checks
+- Transaction flow shifts
+- Severity classification: Normal, Watch, Alert
+
+<span id="context-intelligence" />
+
+## Chapter 7: Context Intelligence
+
+### Core Capabilities
+
+- Merge module outputs into one report
+- Keep language readable and non-hype
+- Produce final verdict and caution level
+- Make report easy to copy or share
+
+<span id="api-overview" />
+
+## Chapter 8: API Overview
+
+### Analyze Token
+
+```http
+POST /api/analyze-token
+```
+
+Request body:
+
+```json
+{
+  "tokenAddress": "SOLANA_TOKEN_ADDRESS",
+  "mode": "auto"
+}
+```
+
+Response shape:
+
+```json
+{
+  "status": "ok | insufficient_data | error",
+  "token": {},
+  "risk": {},
+  "behavior": {},
+  "signals": {},
+  "context": {},
+  "meta": {
+    "dataSource": "mock | live | mixed",
+    "generatedAt": "ISO timestamp",
+    "insufficientDataReasons": []
+  }
+}
+```
+
+<span id="faq" />
+
+## Chapter 9: FAQ
+
+### What makes OMENA different?
+
+OMENA focuses on intelligence output, not trading execution.
+
+### Does OMENA execute transactions?
+
+No. OMENA is an intelligence layer only.
+
+### Does Phase 1 require API keys?
+
+No. The dashboard works with mock fallback when live coverage is incomplete.
+
+### Which live data source is active first?
+
+DexScreener is the first live source in Phase 1.
+
+<span id="roadmap" />
+
+## Chapter 10: Roadmap
+
+1. UI shell and reusable module cards
+2. Mock-backed report flow
+3. DexScreener live market integration
+4. Helius enrichment for behavior and signal depth
+5. Stronger saved analysis and sharing workflows

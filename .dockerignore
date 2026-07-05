@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+**/node_modules
+
+# Build outputs
+.next
+**/dist
+**/.turbo
+
+# Environment files (injected at runtime via docker-compose)
+.env
+**/.env
+!**/.env.example
+
+# Dev / test artifacts
+**/*.local
+**/coverage
+**/.playwright*
+
+# Git
+.git
+.gitignore
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode
+.idea

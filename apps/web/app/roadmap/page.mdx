@@ -1,0 +1,104 @@
+import { DocShell } from "@/components/docs/DocShell";
+
+export const metadata = {
+  title: "OMENA Roadmap Specification",
+  description: "OMENA staged roadmap from foundation to autonomous infrastructure.",
+};
+
+export default function Layout({ children }) {
+  return (
+    <DocShell
+      title="OMENA Roadmap Specification"
+      description="OMENA staged roadmap from foundation to autonomous infrastructure."
+      links={[
+        { href: "/docs", label: "Technical Docs" },
+        { href: "/litepaper", label: "Litepaper" },
+        { href: "/roadmap", label: "Roadmap" },
+      ]}
+      sections={[
+        { href: "#foundation", label: "Foundation" },
+        { href: "#intelligence-engine", label: "Intelligence Engine" },
+        { href: "#behavior-engine", label: "Behavior Engine" },
+        { href: "#signal-engine", label: "Signal Engine" },
+        { href: "#developer-apis", label: "Developer APIs" },
+        { href: "#autonomous-infrastructure", label: "Autonomous Infrastructure" },
+      ]}
+    >
+      {children}
+    </DocShell>
+  );
+}
+
+<span id="foundation" />
+
+## Stage 01 — Foundation
+
+### Goals
+
+- Distributed RPC clusters
+- Mempool scraper framework
+- Data normalization pipeline
+
+---
+
+<span id="intelligence-engine" />
+
+## Stage 02 — Intelligence Engine
+
+### Deliverables
+
+- Multi-threaded processing core
+- Dynamic threat telemetry
+- Risk coefficient system (Rc)
+
+`Rc ∈ [0.0, 1.0]`
+
+---
+
+<span id="behavior-engine" />
+
+## Stage 03 — Behavior Engine
+
+### Deliverables
+
+- Wallet clustering
+- Intent classification
+- MEV profiling
+
+---
+
+<span id="signal-engine" />
+
+## Stage 04 — Signal Engine
+
+### Deliverables
+
+- Cross-chain capital tracking
+- Divergence detection
+- Slippage estimators
+- Depth profiling
+
+---
+
+<span id="developer-apis" />
+
+## Stage 05 — Developer APIs
+
+### Deliverables
+
+- REST APIs
+- GraphQL APIs
+- WebSocket streaming
+- SDK releases
+
+---
+
+<span id="autonomous-infrastructure" />
+
+## Stage 06 — Autonomous Infrastructure
+
+### Deliverables
+
+- Ecosystem decentralization
+- Zero-Knowledge Intelligence Proofs (ZK-IP)
+- Machine-to-machine settlement
