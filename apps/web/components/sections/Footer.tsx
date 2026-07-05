@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { RiTwitterXFill, RiTelegram2Fill } from "react-icons/ri";
+import { RiTwitterXFill, RiTelegram2Fill, RiGithubFill } from "react-icons/ri";
 import { BookOpen, CircleGauge, FileText } from "lucide-react";
 import { buttonVariants } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
@@ -32,6 +32,7 @@ const footerQuickActions = [
 ];
 
 const socialLinks = [
+  { href: siteConfig.social.github, label: "GitHub", icon: RiGithubFill },
   { href: siteConfig.social.x, label: "X", icon: RiTwitterXFill },
   { href: siteConfig.social.telegram, label: "Telegram", icon: RiTelegram2Fill },
 ];
@@ -134,6 +135,7 @@ export function Footer() {
             <Link href="/docs" className="transition-colors hover:text-primary">Docs</Link>
             <Link href="/litepaper" className="transition-colors hover:text-primary">Litepaper</Link>
             <Link href="/roadmap" className="transition-colors hover:text-primary">Roadmap</Link>
+            <Link href={siteConfig.social.github} target="_blank" rel="noreferrer" className="transition-colors hover:text-primary">GitHub</Link>
             <Link href={siteConfig.social.x} target="_blank" rel="noreferrer" className="transition-colors hover:text-primary">X</Link>
             <Link href={siteConfig.social.telegram} target="_blank" rel="noreferrer" className="transition-colors hover:text-primary">Telegram</Link>
           </div>

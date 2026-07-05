@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import { RiTwitterXFill, RiTelegram2Fill } from "react-icons/ri";
+import { RiTwitterXFill, RiTelegram2Fill, RiGithubFill } from "react-icons/ri";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
@@ -64,6 +64,17 @@ export function Navbar() {
           </Link>
 
           <Link
+            href={siteConfig.social.github}
+            target="_blank"
+            rel="noreferrer"
+            aria-label="GitHub"
+            title="GitHub"
+            className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:border-primary/20 hover:bg-muted"
+          >
+            <RiGithubFill className="h-4 w-4" />
+          </Link>
+
+          <Link
             href={siteConfig.social.x}
             target="_blank"
             rel="noreferrer"
@@ -120,7 +131,18 @@ export function Navbar() {
           <div className="flex h-10 w-full items-center justify-center rounded-full border border-border bg-muted text-xs font-black uppercase tracking-wider text-muted-foreground">
             Sign In Soon
           </div>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid grid-cols-3 gap-2">
+            <Link
+              href={siteConfig.social.github}
+              target="_blank"
+              rel="noreferrer"
+              onClick={() => setIsOpen(false)}
+              aria-label="GitHub"
+              title="GitHub"
+              className="flex h-10 items-center justify-center rounded-full border border-border bg-card text-foreground transition-colors hover:bg-muted/60"
+            >
+              <RiGithubFill className="h-4 w-4" />
+            </Link>
             <Link
               href={siteConfig.social.x}
               target="_blank"
