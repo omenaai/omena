@@ -70,9 +70,12 @@ export function HeroSection() {
 
           {/* CTA buttons */}
           <div className="flex flex-col gap-2.5 sm:flex-row sm:items-center sm:pt-2 sm:gap-3">
-            <span className="inline-flex h-10 items-center justify-center rounded-full bg-muted px-5 text-[10px] font-black uppercase tracking-wider text-muted-foreground sm:h-12 sm:px-7 sm:text-xs">
-              Dashboard Coming Soon
-            </span>
+            <Link
+              href="/app"
+              className="inline-flex h-10 items-center justify-center rounded-full bg-primary px-5 text-[10px] font-black uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 active:scale-[0.98] sm:h-12 sm:px-7 sm:text-xs"
+            >
+              Open Dashboard
+            </Link>
             <Link
               href="/docs"
               className="inline-flex h-10 items-center justify-center rounded-full bg-muted/80 px-5 text-[10px] font-black uppercase tracking-wider text-foreground transition-colors hover:bg-muted active:scale-[0.98] sm:h-12 sm:px-7 sm:text-xs"
@@ -128,9 +131,12 @@ export function HeroSection() {
       <div className="w-full border-t border-border bg-surface-container-low shadow-sm">
         <div className="mx-auto grid w-full max-w-[1200px] grid-cols-1 px-4 sm:px-6 md:grid-cols-2 lg:grid-cols-4">
           <div className="flex items-center justify-center py-5 lg:justify-start">
-            <span className="inline-flex h-10 w-full max-w-[240px] items-center justify-center rounded-full bg-muted text-[10px] font-black uppercase tracking-widest text-muted-foreground shadow-sm sm:h-12">
-              Dashboard Coming Soon
-            </span>
+            <Link
+              href="/app"
+              className="inline-flex h-10 w-full max-w-[240px] items-center justify-center rounded-full bg-primary text-[10px] font-black uppercase tracking-widest text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 active:scale-[0.98] sm:h-12"
+            >
+              Open Dashboard
+            </Link>
           </div>
 
           {railItems.map((item) => {

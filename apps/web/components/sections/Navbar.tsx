@@ -85,9 +85,12 @@ export function Navbar() {
             <RiTwitterXFill className="h-4 w-4" />
           </Link>
 
-          <span className="inline-flex items-center rounded-full border border-border bg-muted px-3.5 py-2 text-[10px] font-black uppercase tracking-wider text-muted-foreground">
-            Sign In Soon
-          </span>
+          <Link
+            href="/auth"
+            className="inline-flex items-center rounded-full bg-primary px-4 py-2 text-[10px] font-black uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90 active:scale-[0.98]"
+          >
+            Sign In
+          </Link>
         </div>
 
         <div className="flex items-center justify-end lg:hidden">
@@ -128,9 +131,13 @@ export function Navbar() {
               </Link>
             ))}
           </div>
-          <div className="flex h-10 w-full items-center justify-center rounded-full border border-border bg-muted text-xs font-black uppercase tracking-wider text-muted-foreground">
-            Sign In Soon
-          </div>
+          <Link
+            href="/auth"
+            onClick={() => setIsOpen(false)}
+            className="flex h-10 w-full items-center justify-center rounded-full bg-primary text-xs font-black uppercase tracking-wider text-primary-foreground transition-colors hover:bg-primary/90"
+          >
+            Sign In
+          </Link>
           <div className="grid grid-cols-3 gap-2">
             <Link
               href={siteConfig.social.github}

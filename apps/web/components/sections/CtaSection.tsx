@@ -23,9 +23,12 @@ export function CtaSection() {
         </Subheading>
 
         <div className="flex w-full flex-col gap-2.5 pt-2 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3">
-          <span className="inline-flex items-center justify-center rounded-full border border-white/16 bg-white/10 px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-primary-foreground/80 sm:min-w-52 sm:text-sm">
-            Dashboard Coming Soon
-          </span>
+          <Link
+            href="/app"
+            className="inline-flex items-center justify-center rounded-full border border-white/16 bg-white/20 px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-primary-foreground transition-colors hover:bg-white/25 active:scale-[0.98] sm:min-w-52 sm:text-sm"
+          >
+            Open Dashboard
+          </Link>
           <Link
             href="/docs"
             className={cn(
