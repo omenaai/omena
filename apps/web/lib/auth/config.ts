@@ -7,10 +7,12 @@ export const AUTH_STATEMENT = "Sign in to OMENA Dashboard.";
 export const DEFAULT_SOLANA_RPC_URL = "https://api.mainnet-beta.solana.com";
 
 export function getAuthSecret() {
-  const secret = process.env.AUTH_SESSION_SECRET?.trim();
+  const secret =
+    process.env.AUTH_SESSION_SECRET?.trim() ||
+    process.env.BETTER_AUTH_SECRET?.trim();
 
   if (!secret) {
-    throw new Error("AUTH_SESSION_SECRET is not configured.");
+    throw new Error("AUTH_SESSION_SECRET or BETTER_AUTH_SECRET must be set.");
   }
 
   return new TextEncoder().encode(secret);
