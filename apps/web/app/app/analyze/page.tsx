@@ -11,7 +11,30 @@ import {
   SignalsCard,
   TokenOverviewCard,
 } from "@/components/app/cards";
-import { analyzeTokenAddress } from "@/lib/intelligence/analyze-token";
+import type { TokenAnalysisResult } from "@/lib/types/token-analysis";
+
+const API_INTERNAL_URL = process.env.API_INTERNAL_URL ?? "http://localhost:8787";
+
+async function fetchAnalysis(tokenAddress: string): Promise<TokenAnalysisResult> {
+  const res = await fetch(`${API_INTERNAL_URL}/analyze`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      ...(process.env.INTERNAL_API_SECRET
+        ? { Authorization: `Bearer ${process.env.INTERNAL_API_SECRET}` }
+        : {}),
+    },
+    body: JSON.stringify({ tokenAddress }),
+    cache: "no-store",
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(text || `Analysis request failed: ${res.status}`);
+  }
+
+  return res.json() as Promise<TokenAnalysisResult>;
+}
 
 type AnalyzePageProps = {
   searchParams: Promise<{
@@ -81,11 +104,11 @@ export default async function AnalyzePage({ searchParams }: AnalyzePageProps) {
     );
   }
 
-  let result: Awaited<ReturnType<typeof analyzeTokenAddress>> | null = null;
+  let result: TokenAnalysisResult | null = null;
   let errorMessage = "";
 
   try {
-    result = await analyzeTokenAddress(token);
+    result = await fetchAnalysis(token);
   } catch (error) {
     errorMessage = getFriendlyAnalyzeError(error instanceof Error ? error.message : undefined);
   }

@@ -36,6 +36,8 @@ services:
       GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
       GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://yourdomain.com/api/v1}
+      API_INTERNAL_URL: http://api:8787
+      INTERNAL_API_SECRET: ${INTERNAL_API_SECRET}
     depends_on:
       postgres:
         condition: service_healthy
@@ -54,6 +56,13 @@ services:
     environment:
       PORT: 8787
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:3000}
+      INTERNAL_API_SECRET: ${INTERNAL_API_SECRET}
+      HELIUS_API_KEY: ${HELIUS_API_KEY}
+      OLLAMA_BASE_URL: ${OLLAMA_BASE_URL}
+      OLLAMA_API_KEY: ${OLLAMA_API_KEY}
+      OLLAMA_MODEL: ${OLLAMA_MODEL}
+      OLLAMA_TIMEOUT_MS: ${OLLAMA_TIMEOUT_MS:-15000}
+      COINGECKO_API_KEY: ${COINGECKO_API_KEY}
     healthcheck:
       test: ["CMD-SHELL", "node -e \"require('http').get('http://localhost:8787/health', r => process.exit(r.statusCode < 500 ? 0 : 1)).on('error', () => process.exit(1))\""]
       interval: 30s

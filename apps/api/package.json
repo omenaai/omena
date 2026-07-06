@@ -11,7 +11,10 @@
   },
   "dependencies": {
     "@hono/node-server": "2.0.8",
-    "hono": "4.12.27"
+    "@hono/zod-validator": "^0.8.0",
+    "hono": "4.12.27",
+    "ollama": "^0.6.3",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/node": "26.1.0",

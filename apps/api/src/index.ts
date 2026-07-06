@@ -2,6 +2,8 @@ import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import { HTTPException } from "hono/http-exception";
+import { routes } from "./routes/index.js";
 
 const ALLOWED_ORIGINS = (process.env.ALLOWED_ORIGINS ?? "http://localhost:3000")
   .split(",")
@@ -37,6 +39,18 @@ app.get("/health", (c) =>
     timestamp: new Date().toISOString(),
   }),
 );
+
+app.route("/", routes);
+
+app.onError((err, c) => {
+  if (err instanceof HTTPException) {
+    return c.json({ success: false, message: err.message }, err.status);
+  }
+  console.error(err);
+  return c.json({ success: false, message: "Internal server error" }, 500);
+});
+
+app.notFound((c) => c.json({ success: false, message: "Route not found" }, 404));
 
 const port = Number(process.env.PORT ?? 8787);
 
