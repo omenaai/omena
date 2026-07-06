@@ -21,6 +21,8 @@ services:
       args:
         NEXT_PUBLIC_SOLANA_RPC_URL: ${NEXT_PUBLIC_SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}
         NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://api.omenaai.com}
+        BETTER_AUTH_URL: ${BETTER_AUTH_URL}
+        BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
     restart: unless-stopped
     environment:
       DATABASE_URL: postgresql://omenaai:${POSTGRES_PASSWORD}@postgres:5432/omenaai
