@@ -87,23 +87,15 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
   const ActiveIcon = activeEmptyState.icon;
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-5 px-2 pb-8 md:px-4 lg:px-6">
-      {/* Market header — amber/trading accent */}
-      <section className="relative overflow-hidden rounded-[28px] border border-amber-500/20 bg-gradient-to-br from-amber-950/20 via-card/90 to-card/90 shadow-[var(--shadow-ambient)]">
-        {/* subtle grid pattern */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 bg-[linear-gradient(rgba(245,158,11,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(245,158,11,0.03)_1px,transparent_1px)] bg-[size:40px_40px]"
-        />
-        {/* top accent strip */}
-        <div className="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-amber-500/60 to-transparent" />
-
-        <div className="relative grid gap-0 lg:grid-cols-[1.15fr_0.85fr]">
-          <div className="p-6 sm:p-8">
-            <div className="flex max-w-3xl flex-col gap-1.5">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 pb-8 md:px-6 lg:px-8">
+      {/* Market header */}
+      <section className="relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 sm:p-8 shadow-sm">
+        <div className="relative grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="flex flex-col justify-between gap-6">
+            <div className="flex flex-col gap-1.5">
               <div className="flex items-center gap-2">
-                <Zap className="h-3 w-3 text-amber-500" />
-                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-amber-500">
+                <Zap className="h-3.5 w-3.5 text-primary animate-pulse" />
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
                   Market Intelligence
                 </p>
               </div>
@@ -116,7 +108,7 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
             </div>
 
             {/* Tab navigation */}
-            <div className="mt-6 flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
                 const isActive = tab.value === activeTab;
@@ -127,8 +119,8 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
                     className={cn(
                       "flex items-center gap-2 rounded-full border px-4 py-2 text-xs font-bold transition-all",
                       isActive
-                        ? "border-amber-500/40 bg-amber-500 text-white shadow-[0_0_12px_rgba(245,158,11,0.3)]"
-                        : "border-border/70 bg-background/80 text-foreground hover:border-amber-500/30 hover:bg-amber-500/5 hover:text-amber-600 dark:hover:text-amber-400",
+                        ? "border-primary bg-primary text-white shadow-sm"
+                        : "border-border bg-background text-foreground hover:bg-muted",
                     )}
                   >
                     <Icon className="h-3.5 w-3.5" />
@@ -140,15 +132,15 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
           </div>
 
           {/* Status panel */}
-          <div className="border-t border-amber-500/10 bg-amber-500/[0.03] p-6 sm:p-8 lg:border-l lg:border-t-0">
-            <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-amber-500/70">
+          <div className="rounded-xl bg-muted/30 p-5 border border-border/40">
+            <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
               Feed Status
             </p>
-            <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+            <div className="flex flex-col gap-3">
               {statusItems.map((item) => (
                 <div
                   key={item.label}
-                  className="flex items-center justify-between rounded-2xl border border-amber-500/10 bg-background/60 px-4 py-3"
+                  className="flex items-center justify-between rounded-xl border border-border/40 bg-card px-4 py-2.5"
                 >
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">
@@ -164,9 +156,9 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
         </div>
       </section>
 
-      <div className="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
+      <div className="grid gap-6 xl:grid-cols-[1.35fr_0.65fr]">
         {/* Main content panel */}
-        <Card className="min-h-[420px] rounded-[24px] border border-amber-500/15 bg-card/92 shadow-sm">
+        <Card className="min-h-[420px] rounded-2xl border border-border/50 bg-card shadow-sm">
           <CardHeader className="pb-2">
             <div className="flex items-center justify-between gap-4">
               <div className="flex items-center gap-2">
@@ -176,7 +168,7 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
               </div>
               <Badge
                 variant="secondary"
-                className="border-amber-500/20 bg-amber-500/10 font-mono text-amber-600 dark:text-amber-400"
+                className="bg-primary/10 font-mono text-primary border-none"
               >
                 Empty
               </Badge>
@@ -193,8 +185,8 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
           </CardContent>
         </Card>
 
-        <aside className="flex flex-col gap-5">
-          <Card className="rounded-[24px] border border-amber-500/15 bg-card/92 shadow-sm">
+        <aside className="flex flex-col gap-6">
+          <Card className="rounded-2xl border border-border/50 bg-card shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-black tracking-[-0.03em]">Market tools</CardTitle>
             </CardHeader>
@@ -203,7 +195,7 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
                 href="/app/analyze"
                 className={cn(
                   buttonVariants({ variant: "default", size: "lg" }),
-                  "w-full justify-between rounded-2xl bg-amber-500 text-sm font-bold text-white hover:bg-amber-500/90",
+                  "w-full justify-between rounded-xl text-sm font-semibold",
                 )}
               >
                 Analyze token
@@ -213,7 +205,7 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
                 href="/app/market?tab=watchlist"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "w-full justify-between rounded-2xl bg-background text-sm font-bold",
+                  "w-full justify-between rounded-xl bg-background text-sm font-semibold border-border/50",
                 )}
               >
                 Watchlist
@@ -222,13 +214,13 @@ export default async function MarketPage({ searchParams }: MarketPageProps) {
             </CardContent>
           </Card>
 
-          <Card className="rounded-[24px] border border-amber-500/15 bg-card/92 shadow-sm">
+          <Card className="rounded-2xl border border-border/50 bg-card shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-black tracking-[-0.03em]">Saved filters</CardTitle>
             </CardHeader>
             <CardContent>
               <MarketEmptyState
-                className="min-h-[132px]"
+                className="min-h-[132px] bg-muted/10 border-dashed"
                 icon={Search}
                 title="No filters saved."
                 description="Saved market filters will appear here."
@@ -259,21 +251,21 @@ function MarketEmptyState({
   return (
     <div
       className={cn(
-        "flex min-h-[332px] flex-col items-center justify-center rounded-2xl border border-dashed border-amber-500/20 bg-amber-500/[0.02] px-5 py-10 text-center",
+        "flex min-h-[332px] flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-background/50 px-5 py-10 text-center",
         className,
       )}
     >
-      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-500">
+      <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/10 text-primary">
         <Icon className="h-4 w-4" />
       </div>
-      <p className="text-base font-black tracking-[-0.03em] text-foreground">{title}</p>
+      <p className="text-base font-bold tracking-[-0.03em] text-foreground">{title}</p>
       <p className="mt-2 max-w-sm text-sm font-medium leading-6 text-muted-foreground">{description}</p>
       {actionHref && actionLabel ? (
         <Link
           href={actionHref}
           className={cn(
             buttonVariants({ variant: "outline", size: "lg" }),
-            "mt-5 rounded-2xl border-amber-500/20 bg-card text-sm font-bold hover:border-amber-500/40 hover:bg-amber-500/5",
+            "mt-5 rounded-xl border-border bg-card text-sm font-semibold hover:bg-muted",
           )}
         >
           {actionLabel}

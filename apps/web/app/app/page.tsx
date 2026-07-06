@@ -21,20 +21,6 @@ type RecentAnalysis = {
   summary: string;
 };
 
-const featureAccents: Record<string, string> = {
-  "Risk Scan": "border-l-rose-500 bg-rose-500/5",
-  "Behavior": "border-l-violet-500 bg-violet-500/5",
-  "Signals": "border-l-sky-500 bg-sky-500/5",
-  "Reports": "border-l-emerald-500 bg-emerald-500/5",
-};
-
-const featureIconColors: Record<string, string> = {
-  "Risk Scan": "bg-rose-500/10 text-rose-500",
-  "Behavior": "bg-violet-500/10 text-violet-500",
-  "Signals": "bg-sky-500/10 text-sky-500",
-  "Reports": "bg-emerald-500/10 text-emerald-500",
-};
-
 const statusColors: Record<string, string> = {
   Online: "bg-emerald-500",
   Ready: "bg-sky-500",
@@ -79,17 +65,12 @@ export default function DashboardHomePage() {
   const recentAnalyses: RecentAnalysis[] = [];
 
   return (
-    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-5 px-2 pb-8 md:px-4 lg:px-6">
+    <div className="mx-auto flex w-full max-w-[1440px] flex-col gap-6 px-4 pb-8 md:px-6 lg:px-8">
       {/* Hero */}
-      <section className="relative overflow-hidden rounded-[28px] border border-border/70 bg-card/90 shadow-[var(--shadow-ambient)]">
-        {/* decorative glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute -top-24 -right-24 h-72 w-72 rounded-full bg-primary/8 blur-3xl"
-        />
-        <div className="grid gap-0 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="p-6 sm:p-8">
-            <div className="flex max-w-3xl flex-col gap-1.5">
+      <section className="relative overflow-hidden rounded-2xl border border-border/50 bg-card p-6 sm:p-8 shadow-sm">
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
+          <div className="flex flex-col justify-between gap-6">
+            <div className="flex flex-col gap-1.5">
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
                 Command Center
               </p>
@@ -100,22 +81,23 @@ export default function DashboardHomePage() {
                 Monitor token checks, review active modules, and start a new analysis.
               </p>
             </div>
-            <div className="mt-6">
+            <div>
               <TokenInputForm showHeader={false} />
             </div>
           </div>
-          <div className="border-t border-border/70 bg-secondary/55 p-6 sm:p-8 lg:border-l lg:border-t-0">
+
+          <div className="rounded-xl bg-muted/30 p-5 border border-border/40">
             <p className="mb-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
               System Status
             </p>
             {activity.length > 0 ? (
-              <div className="grid gap-3 sm:grid-cols-3 lg:grid-cols-1">
+              <div className="flex flex-col gap-3">
                 {activity.map((item) => {
                   const dotColor = statusColors[item.value] ?? "bg-border";
                   return (
                     <div
                       key={item.label}
-                      className="flex items-center justify-between rounded-2xl border border-border/70 bg-background/80 px-4 py-3"
+                      className="flex items-center justify-between rounded-xl border border-border/40 bg-card px-4 py-2.5"
                     >
                       <div>
                         <p className="text-[10px] font-black uppercase tracking-[0.18em] text-muted-foreground">
@@ -138,7 +120,7 @@ export default function DashboardHomePage() {
               </div>
             ) : (
               <EmptyState
-                className="min-h-[168px] bg-background/70"
+                className="min-h-[168px] bg-card"
                 icon={Settings}
                 title="System status unavailable."
                 description="Status checks will appear here when sources respond."
@@ -148,28 +130,23 @@ export default function DashboardHomePage() {
         </div>
       </section>
 
-      <div className="grid gap-5 xl:grid-cols-[1.35fr_0.65fr]">
-        {/* Feature cards with per-module color accent */}
-        <section className="grid gap-3 md:grid-cols-2">
+      <div className="grid gap-6 xl:grid-cols-[1.35fr_0.65fr]">
+        {/* Feature cards */}
+        <section className="grid gap-4 md:grid-cols-2">
           {features.map((feature) => {
             const Icon = feature.icon;
-            const accent = featureAccents[feature.title] ?? "";
-            const iconColor = featureIconColors[feature.title] ?? "bg-primary/10 text-primary";
 
             return (
               <Card
                 key={feature.title}
-                className={cn(
-                  "min-h-[216px] rounded-[24px] border border-border/70 border-l-[3px] shadow-sm",
-                  accent,
-                )}
+                className="min-h-[200px] rounded-2xl border border-border/50 bg-card shadow-sm hover:shadow-md transition-shadow"
               >
                 <CardHeader className="gap-4 pb-2">
                   <div className="flex items-start justify-between gap-4">
-                    <div className={cn("flex h-10 w-10 items-center justify-center rounded-xl", iconColor)}>
+                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Icon className="h-4 w-4" />
                     </div>
-                    <Badge variant="secondary" className="bg-primary/10 text-primary">
+                    <Badge variant="secondary" className="bg-primary/10 text-primary border-none">
                       {feature.status}
                     </Badge>
                   </div>
@@ -185,8 +162,8 @@ export default function DashboardHomePage() {
           })}
         </section>
 
-        <aside className="flex flex-col gap-5">
-          <Card className="rounded-[24px] border border-border/70 bg-card/92 shadow-sm">
+        <aside className="flex flex-col gap-6">
+          <Card className="rounded-2xl border border-border/50 bg-card shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-black tracking-[-0.03em]">Next actions</CardTitle>
             </CardHeader>
@@ -195,7 +172,7 @@ export default function DashboardHomePage() {
                 href="/app/analyze"
                 className={cn(
                   buttonVariants({ variant: "default", size: "lg" }),
-                  "w-full justify-between rounded-2xl text-sm font-bold",
+                  "w-full justify-between rounded-xl text-sm font-semibold",
                 )}
               >
                 New analysis
@@ -205,7 +182,7 @@ export default function DashboardHomePage() {
                 href="/docs"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "w-full justify-between rounded-2xl bg-background text-sm font-bold",
+                  "w-full justify-between rounded-xl bg-background text-sm font-semibold border-border/50",
                 )}
               >
                 Documentation
@@ -215,7 +192,7 @@ export default function DashboardHomePage() {
                 href="/app/settings"
                 className={cn(
                   buttonVariants({ variant: "outline", size: "lg" }),
-                  "w-full justify-between rounded-2xl bg-background text-sm font-bold",
+                  "w-full justify-between rounded-xl bg-background text-sm font-semibold border-border/50",
                 )}
               >
                 Settings
@@ -224,7 +201,7 @@ export default function DashboardHomePage() {
             </CardContent>
           </Card>
 
-          <Card className="rounded-[24px] border border-border/70 bg-card/92 shadow-sm">
+          <Card className="rounded-2xl border border-border/50 bg-card shadow-sm">
             <CardHeader className="pb-2">
               <CardTitle className="text-base font-black tracking-[-0.03em]">Recent analysis</CardTitle>
             </CardHeader>
@@ -234,7 +211,7 @@ export default function DashboardHomePage() {
                   {recentAnalyses.map((report) => (
                     <div
                       key={report.token}
-                      className="rounded-2xl border border-border/70 bg-background/80 px-4 py-3"
+                      className="rounded-xl border border-border/40 bg-muted/20 px-4 py-3"
                     >
                       <div className="flex items-center justify-between gap-3">
                         <p className="text-sm font-black text-foreground">{report.token}</p>
@@ -246,7 +223,7 @@ export default function DashboardHomePage() {
                 </div>
               ) : (
                 <EmptyState
-                  className="min-h-[132px]"
+                  className="min-h-[132px] bg-muted/10 border-dashed"
                   icon={FileText}
                   title="No saved reports yet."
                   description="Run an analysis to populate this list."
