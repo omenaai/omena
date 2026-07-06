@@ -24,6 +24,7 @@ COPY . .
 RUN pnpm --filter @omenaai/api build
 
 # ── 3. Production runner ───────────────────────────────────────────────────
+# tsup bundles all deps into dist/index.js — no node_modules needed at runtime
 FROM node:22-alpine AS runner
 WORKDIR /app
 
@@ -33,8 +34,6 @@ RUN addgroup --system --gid 1001 nodejs && \
     adduser --system --uid 1001 apiuser
 
 COPY --from=builder --chown=apiuser:nodejs /app/apps/api/dist ./dist
-COPY --from=builder --chown=apiuser:nodejs /app/apps/api/node_modules ./node_modules
-COPY --from=builder --chown=apiuser:nodejs /app/apps/api/package.json ./package.json
 
 USER apiuser
 
