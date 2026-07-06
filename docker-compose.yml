@@ -33,6 +33,9 @@ services:
       OLLAMA_TIMEOUT_MS: ${OLLAMA_TIMEOUT_MS:-15000}
       NEXT_PUBLIC_SOLANA_RPC_URL: ${NEXT_PUBLIC_SOLANA_RPC_URL:-https://api.mainnet-beta.solana.com}
       COINGECKO_API_KEY: ${COINGECKO_API_KEY}
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL:-https://yourdomain.com/api/v1}
     depends_on:
       postgres:
         condition: service_healthy
