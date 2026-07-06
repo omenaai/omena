@@ -42,7 +42,7 @@ export function Footer() {
     <footer className="w-full bg-background">
       <section className="relative overflow-hidden bg-foreground py-5 text-background">
         <div className="pointer-events-none absolute inset-y-0 right-0 w-1/2 opacity-35 [background-image:radial-gradient(circle_at_center,rgba(255,255,255,0.12)_1px,transparent_1px)] [background-size:18px_18px]" />
-        <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-3 px-6 sm:flex-row sm:items-center sm:justify-between">
+        <div className="relative mx-auto flex w-full max-w-[1200px] flex-col gap-3 px-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
           <p className="text-[10px] font-black uppercase tracking-[0.32em] text-background/55">
             Built on trusted infrastructure
           </p>
@@ -57,7 +57,7 @@ export function Footer() {
         </div>
       </section>
 
-      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-8 px-6 py-10 md:py-12">
+      <div className="mx-auto flex w-full max-w-[1200px] flex-col gap-8 px-4 py-8 sm:px-6 md:py-12">
         <div className="flex w-full flex-col items-start justify-between gap-5 text-left lg:flex-row lg:items-center">
           <Link className="flex items-center" href="/" aria-label="OMENA home">
             <Image src="/logo.png" alt="OMENA" width={120} height={32} className="h-11 w-auto object-contain" />

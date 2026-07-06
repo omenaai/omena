@@ -8,8 +8,8 @@ import { cn } from "@/lib/utils";
 
 export function CtaSection() {
   return (
-    <section className="relative w-full overflow-hidden bg-primary py-16 text-center text-primary-foreground md:py-24">
-      <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center space-y-6 px-6">
+    <section className="relative w-full overflow-hidden bg-primary py-12 text-center text-primary-foreground sm:py-16 md:py-24">
+      <div className="relative z-10 mx-auto flex max-w-[1200px] flex-col items-center space-y-5 px-4 sm:space-y-6 sm:px-6">
         <Heading as="h2" size="section" className="max-w-3xl text-center text-primary-foreground">
           <span className="flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
             <span>Build smarter agents with</span>
@@ -22,8 +22,8 @@ export function CtaSection() {
           The dashboard access is temporarily paused while we focus on the landing page and product direction.
         </Subheading>
 
-        <div className="flex flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:justify-center">
-          <span className="inline-flex min-w-52 items-center justify-center rounded-full border border-white/16 bg-white/10 px-5 py-3 text-sm font-black uppercase tracking-[0.18em] text-primary-foreground/80">
+        <div className="flex w-full flex-col gap-2.5 pt-2 sm:w-auto sm:flex-row sm:flex-wrap sm:justify-center sm:gap-3">
+          <span className="inline-flex items-center justify-center rounded-full border border-white/16 bg-white/10 px-5 py-3 text-xs font-black uppercase tracking-[0.18em] text-primary-foreground/80 sm:min-w-52 sm:text-sm">
             Dashboard Coming Soon
           </span>
           <Link

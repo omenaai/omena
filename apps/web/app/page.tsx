@@ -36,11 +36,11 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="antialiased font-body-md min-h-screen flex flex-col bg-background text-foreground">
+    <div className="antialiased font-body-md min-h-screen flex flex-col bg-background text-foreground overflow-x-hidden">
       <Navbar />
       <main className="flex-grow">
         <HeroSection />
-        <div className="space-y-16">
+        <div className="space-y-8 sm:space-y-16">
           <BentoGrid />
           <InteractiveSandbox />
           <UseCases />

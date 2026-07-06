@@ -25,7 +25,7 @@ export function Navbar() {
 
   return (
     <header className="sticky top-0 z-50 flex w-full flex-col border-b border-border bg-background">
-      <div className="mx-auto grid h-16 w-full max-w-[1200px] grid-cols-[1fr_auto] items-center gap-6 px-6 lg:grid-cols-3">
+      <div className="mx-auto grid h-14 w-full max-w-[1200px] grid-cols-[1fr_auto] items-center gap-4 px-4 sm:h-16 sm:gap-6 sm:px-6 lg:grid-cols-3">
         <div className="flex items-center lg:justify-self-start">
           <Link className="flex shrink-0 items-center" href="/" aria-label="OMENA home">
             <Image
@@ -105,7 +105,7 @@ export function Navbar() {
       </div>
 
       <div className="w-full overflow-hidden bg-background">
-        <Marquee className="mx-auto max-w-[1200px] px-6 py-2.5 text-[10px] font-bold uppercase tracking-wider text-foreground/75 [--duration:42s]" repeat={4}>
+        <Marquee className="mx-auto max-w-[1200px] px-4 py-2 text-[9px] font-bold uppercase tracking-wider text-foreground/75 [--duration:42s] sm:px-6 sm:py-2.5 sm:text-[10px]" repeat={4}>
           {announcements.map((item) => (
             <div key={item} className="flex items-center gap-4 whitespace-nowrap">
               <span>{item}</span>
@@ -115,7 +115,7 @@ export function Navbar() {
       </div>
 
       {isOpen && (
-        <div className="absolute left-6 right-6 top-16 z-50 space-y-4 rounded-3xl border border-border bg-card p-5 shadow-ambient animate-in fade-in slide-in-from-top-2 duration-200">
+        <div className="absolute left-4 right-4 top-14 z-50 space-y-4 rounded-3xl border border-border bg-card p-4 shadow-ambient animate-in fade-in slide-in-from-top-2 duration-200 sm:left-6 sm:right-6 sm:top-16 sm:p-5">
           <div className="flex flex-col gap-3 pl-2 text-left">
             {navLinks.map((link) => (
               <Link

@@ -35,7 +35,7 @@ async function analyzeTarget(address: string) {
   };
 
   return (
-    <section className="framer-animate max-w-[1200px] mx-auto px-6 py-16">
+    <section className="framer-animate max-w-[1200px] mx-auto px-4 py-10 sm:px-6 sm:py-16">
       <div className="grid md:grid-cols-2 gap-12 items-center">
         {/* Left Column: Code Block */}
         <SpotlightCard 

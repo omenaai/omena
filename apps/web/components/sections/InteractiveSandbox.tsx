@@ -17,9 +17,9 @@ const auditRows = [
 ];
 
 const tabs = [
-  { id: "chat", label: "Conversational", icon: <MessageSquare className="w-3.5 h-3.5" /> },
-  { id: "notebook", label: "SQL Notebook", icon: <Terminal className="w-3.5 h-3.5" /> },
-  { id: "cockpit", label: "Security Cockpit", icon: <Layout className="w-3.5 h-3.5" /> },
+  { id: "chat", label: "Conversational", shortLabel: "Chat", icon: <MessageSquare className="w-3.5 h-3.5" /> },
+  { id: "notebook", label: "SQL Notebook", shortLabel: "SQL", icon: <Terminal className="w-3.5 h-3.5" /> },
+  { id: "cockpit", label: "Security Cockpit", shortLabel: "Cockpit", icon: <Layout className="w-3.5 h-3.5" /> },
 ] as const;
 
 export function InteractiveSandbox() {
@@ -36,7 +36,7 @@ const analysis = await client.signals.analyze({ target: address, depth: 'compreh
   };
 
   return (
-    <section className="framer-animate mx-auto max-w-[1200px] px-6 py-12">
+    <section className="framer-animate mx-auto max-w-[1200px] px-4 py-8 sm:px-6 sm:py-12">
       {/* Heading Section */}
       <div className="mb-10 max-w-2xl text-left">
         <Eyebrow>INTERACTIVE</Eyebrow>
@@ -67,14 +67,16 @@ const analysis = await client.signals.analyze({ target: address, depth: 'compreh
                   size="sm"
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center justify-center gap-2 px-5 py-2 text-[10px] font-black uppercase tracking-wider rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                  className={`flex items-center justify-center gap-1 px-2 py-1.5 text-[9px] font-black uppercase tracking-wider rounded-full transition-all duration-200 whitespace-nowrap cursor-pointer min-[360px]:px-3 min-[360px]:text-[10px] sm:gap-2 sm:px-5 sm:py-2 ${
                     active
                       ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
                       : "text-muted-foreground hover:text-foreground hover:bg-muted/40"
                   }`}
                 >
                   {tab.icon}
-                  {tab.label}
+                  {/* icon-only < 360px, short label 360-639px, full label sm+ */}
+                  <span className="hidden min-[360px]:inline sm:hidden">{tab.shortLabel}</span>
+                  <span className="hidden sm:inline">{tab.label}</span>
                 </Button>
               );
             })}

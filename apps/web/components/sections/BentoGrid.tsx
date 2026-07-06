@@ -75,7 +75,7 @@ export function BentoGrid() {
   }, []);
 
   return (
-    <section className="framer-animate max-w-[1200px] mx-auto px-6 py-12">
+    <section className="framer-animate max-w-[1200px] mx-auto px-4 py-8 sm:px-6 sm:py-12">
       <div className="mb-12 text-left">
         <Eyebrow>EFFORTLESS FINANCE</Eyebrow>
         <Heading as="h2" size="section" className="font-black text-foreground leading-[1.3] text-balance">
@@ -93,7 +93,7 @@ export function BentoGrid() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
-        <SpotlightCard className="md:col-span-2 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between bg-card p-6 md:p-8 lg:p-10 min-h-[360px]">
+        <SpotlightCard className="md:col-span-2 hover:-translate-y-1 transition-all duration-300 group flex flex-col justify-between bg-card p-6 md:p-8 lg:p-10 min-h-[280px] sm:min-h-[360px]">
           <div className="flex justify-between items-center w-full">
             <div className="bg-primary/10 p-2.5 rounded-xl">
               <BrainCircuit className="text-primary w-6 h-6" />
@@ -145,7 +145,7 @@ export function BentoGrid() {
           </div>
         </SpotlightCard>
 
-        <SpotlightCard className="hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between bg-card p-6 md:p-8 min-h-[360px]">
+        <SpotlightCard className="hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between bg-card p-6 md:p-8 min-h-[280px] sm:min-h-[360px]">
           <div>
             <div className="bg-primary/10 p-2.5 rounded-xl inline-block w-fit mb-5">
               <Database className="text-primary w-5 h-5" />
@@ -188,7 +188,7 @@ export function BentoGrid() {
           </div>
         </SpotlightCard>
 
-        <SpotlightCard className="hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between bg-card p-6 md:p-8 min-h-[360px]">
+        <SpotlightCard className="hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between bg-card p-6 md:p-8 min-h-[280px] sm:min-h-[360px]">
           <div>
             <div className="bg-primary/10 p-2.5 rounded-xl inline-block w-fit mb-5">
               <ShieldAlert className="text-primary w-5 h-5" />
@@ -226,7 +226,7 @@ export function BentoGrid() {
 
         <SpotlightCard
           spotlightColor="rgba(255,255,255,0.03)"
-          className="md:col-span-2 bg-inverse-surface hover:-translate-y-1 transition-all duration-300 text-inverse-on-surface flex flex-col justify-between p-6 md:p-8 lg:p-10 min-h-[360px] relative"
+          className="md:col-span-2 bg-inverse-surface hover:-translate-y-1 transition-all duration-300 text-inverse-on-surface flex flex-col justify-between p-6 md:p-8 lg:p-10 min-h-[280px] sm:min-h-[360px] relative"
         >
           <div className="flex justify-between items-center w-full">
             <div className="bg-white/5 p-2.5 rounded-xl">

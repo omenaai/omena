@@ -40,7 +40,7 @@ const useCasesData = [
 
 export function UseCases() {
   return (
-    <section className="framer-animate mx-auto mt-12 max-w-[1200px] rounded-[32px] border border-border bg-muted/40 px-6 py-16">
+    <section className="framer-animate mx-auto mt-8 max-w-[1200px] rounded-2xl border border-border bg-muted/40 px-4 py-10 sm:mt-12 sm:rounded-[32px] sm:px-6 sm:py-16">
       <div className="grid gap-10 xl:grid-cols-[0.92fr_1.08fr] xl:items-start">
         <div className="text-left">
           <Eyebrow>GLOBAL TRANSFERS</Eyebrow>
