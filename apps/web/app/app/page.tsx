@@ -74,8 +74,11 @@ export default function DashboardHomePage() {
               <p className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-primary">
                 Command Center
               </p>
-              <h1 className="font-display text-3xl font-black tracking-[-0.06em] text-foreground sm:text-4xl">
+              <h1 className="flex items-center gap-3 font-display text-3xl font-black tracking-[-0.06em] text-foreground sm:text-4xl">
                 Dashboard
+                <Badge variant="secondary" className="bg-primary/10 text-primary border-none text-[10px] font-bold uppercase tracking-wider py-1 px-2.5">
+                  Beta Test
+                </Badge>
               </h1>
               <p className="max-w-2xl text-sm font-medium leading-6 text-muted-foreground">
                 Monitor token checks, review active modules, and start a new analysis.
