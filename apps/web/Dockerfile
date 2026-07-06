@@ -27,7 +27,9 @@ COPY . .
 
 # NEXT_PUBLIC_* vars are baked into the client bundle at build time
 ARG NEXT_PUBLIC_SOLANA_RPC_URL=https://api.mainnet-beta.solana.com
+ARG NEXT_PUBLIC_API_URL
 ENV NEXT_PUBLIC_SOLANA_RPC_URL=$NEXT_PUBLIC_SOLANA_RPC_URL
+ENV NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL
 ENV NEXT_TELEMETRY_DISABLED=1
 RUN pnpm --filter @omenaai/web build
 
