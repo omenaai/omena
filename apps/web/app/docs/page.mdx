@@ -1,15 +1,15 @@
 import { DocShell } from "@/components/docs/DocShell";
 
 export const metadata = {
-  title: "OMENA Technical Documentation v0.2",
-  description: "Phase 1 dashboard architecture, intelligence modules, API overview, and delivery notes for OMENA.",
+  title: "OMENA Documentation v0.3",
+  description: "Public Dashboard Beta & Open Source Edition — Agent Intelligence Layer for on-chain blockchain data.",
 };
 
 export default function Layout({ children }) {
   return (
     <DocShell
-      title="OMENA Technical Documentation v0.2"
-      description="Phase 1 turns OMENA into a usable token analyzer dashboard: Solana token in, structured intelligence report out."
+      title="OMENA Documentation v0.3"
+      description="Public Dashboard Beta & Open Source Edition. OMENA is an Agent Intelligence Layer that transforms raw on-chain blockchain activity into structured intelligence."
       links={[
         { href: "/docs", label: "Technical Docs" },
         { href: "/litepaper", label: "Litepaper" },
@@ -17,14 +17,20 @@ export default function Layout({ children }) {
         { href: "/roadmap", label: "Roadmap" },
       ]}
       sections={[
+        { href: "#introduction", label: "Introduction" },
+        { href: "#vision", label: "Vision" },
+        { href: "#why-omena", label: "Why OMENA Exists" },
+        { href: "#current-platform", label: "Current Platform" },
+        { href: "#dashboard-beta", label: "Dashboard Beta" },
         { href: "#architecture", label: "Architecture" },
         { href: "#risk-intelligence", label: "Risk Intelligence" },
         { href: "#behavior-intelligence", label: "Behavior Intelligence" },
         { href: "#signal-intelligence", label: "Signal Intelligence" },
         { href: "#context-intelligence", label: "Context Intelligence" },
-        { href: "#api-overview", label: "API Overview" },
-        { href: "#faq", label: "FAQ" },
+        { href: "#github", label: "GitHub & Open Source" },
         { href: "#roadmap", label: "Roadmap" },
+        { href: "#faq", label: "FAQ" },
+        { href: "#changelog", label: "Changelog" },
       ]}
     >
       {children}
@@ -32,46 +38,104 @@ export default function Layout({ children }) {
   );
 }
 
-<span id="architecture" />
+<span id="introduction" />
 
-## Chapter 3: Architecture
+## Introduction
 
-Phase 1 is designed as a minimal dashboard product, not a trading interface.
+OMENA is an Agent Intelligence Layer that transforms raw on-chain blockchain activity into structured intelligence. The current public release focuses on providing token intelligence through a dashboard experience designed to make blockchain information easier to interpret.
 
-User flow:
+This documentation covers the current public direction of OMENA. It is intended as a foundation that can be expanded as the product evolves.
+
+<span id="vision" />
+
+## Vision
+
+OMENA aims to become foundational intelligence infrastructure for AI-powered blockchain applications by organizing raw data into contextual insights.
+
+<span id="why-omena" />
+
+## Why OMENA Exists
+
+On-chain data is publicly available but not inherently readable. Blockchain explorers surface raw transactions. Charting tools surface price. Neither surface intent.
+
+OMENA exists to close that gap — to take the noise of on-chain activity and return a signal. One that is structured enough for machines to act on, and clear enough for people to understand.
+
+<span id="current-platform" />
+
+## Current Platform
+
+Current public milestones include:
+
+- **Dashboard Beta** — Token intelligence dashboard
+- **Documentation** — This document
+- **Litepaper** — Vision and architecture summary
+- **Public GitHub** — Selected open source components
+
+Future documentation versions will only describe functionality that actually exists.
+
+<span id="dashboard-beta" />
+
+## Dashboard Beta
+
+The Dashboard Beta accepts a supported token contract address, gathers public blockchain information, processes intelligence modules, and returns a structured report.
+
+### How It Works
 
 1. User opens `/app`
-2. User pastes a Solana token address
-3. OMENA validates the address
-4. OMENA fetches market data from DexScreener
-5. OMENA runs Risk, Behavior, Signal, and Context modules
-6. OMENA returns a readable report in `/app/analyze`
+2. User pastes a supported token contract address
+3. OMENA validates the address format
+4. OMENA gathers public blockchain information
+5. OMENA processes intelligence modules
+6. OMENA returns a structured report
 
-Current runtime layers:
+The output is informational. It is not financial advice.
 
-### Layer 1 - Web App
+<span id="architecture" />
+
+## Architecture
+
+```
+Data Collection
+  → Normalization
+  → Risk Intelligence
+  → Behavior Intelligence
+  → Signal Intelligence
+  → Context Assembly
+  → AI Summary
+  → Structured Report
+```
+
+### Layer 1 — Web App
 
 - Next.js App Router frontend
 - Landing page
-- Dashboard routes
-- Docs pages
+- Dashboard routes (`/app`, `/app/analyze`)
+- Documentation pages
 
-### Layer 2 - Data and Analysis
+### Layer 2 — Data and Analysis
 
 - DexScreener market snapshot
 - Optional Helius enrichment
 - Modular intelligence functions
 - Mock fallback when live data is incomplete
 
+### AI Summary
+
+Transforms structured intelligence into concise explanations for easier understanding. It is informational and not financial advice.
+
 <span id="risk-intelligence" />
 
-## Chapter 4: Risk Intelligence
+## Risk Intelligence
+
+Evaluates observable indicators such as liquidity characteristics, holder distribution, deployer activity, and metadata consistency.
 
 ### Core Capabilities
 
 - Liquidity quality scoring
 - Pair age and market depth checks
 - Volume versus liquidity stress checks
+- Holder concentration review
+- Deployer activity indicators
 - Plain-language risk summary
 
 ### Output
@@ -89,7 +153,9 @@ Current runtime layers:
 
 <span id="behavior-intelligence" />
 
-## Chapter 5: Behavior Intelligence
+## Behavior Intelligence
+
+Analyzes publicly visible wallet and token behavior to provide additional context.
 
 ### Core Capabilities
 
@@ -100,7 +166,9 @@ Current runtime layers:
 
 <span id="signal-intelligence" />
 
-## Chapter 6: Signal Intelligence
+## Signal Intelligence
+
+Highlights notable on-chain events and combines them with other intelligence layers.
 
 ### Core Capabilities
 
@@ -111,7 +179,9 @@ Current runtime layers:
 
 <span id="context-intelligence" />
 
-## Chapter 7: Context Intelligence
+## Context Intelligence
+
+Assembles module outputs into a final structured report.
 
 ### Core Capabilities
 
@@ -120,69 +190,148 @@ Current runtime layers:
 - Produce final verdict and caution level
 - Make report easy to copy or share
 
-<span id="api-overview" />
+<span id="github" />
 
-## Chapter 8: API Overview
+## GitHub & Open Source
 
-### Analyze Token
+Selected components are available through the public GitHub repository. Documentation evolves alongside the codebase.
 
-```http
-POST /api/analyze-token
+### Security
+
+OMENA analyzes public blockchain data and does not require custody of user assets for analysis workflows.
+
+### Installation Guide
+
+```bash
+# Clone the repository
+git clone https://github.com/omenaai/omena
+
+# Install dependencies
+pnpm install
+
+# Start development
+pnpm dev
 ```
 
-Request body:
+### Project Structure
 
-```json
-{
-  "tokenAddress": "SOLANA_TOKEN_ADDRESS",
-  "mode": "auto"
-}
+```
+apps/
+  web/        — Next.js frontend
+  api/        — Intelligence API
 ```
 
-Response shape:
+### Contributing
 
-```json
-{
-  "status": "ok | insufficient_data | error",
-  "token": {},
-  "risk": {},
-  "behavior": {},
-  "signals": {},
-  "context": {},
-  "meta": {
-    "dataSource": "mock | live | mixed",
-    "generatedAt": "ISO timestamp",
-    "insufficientDataReasons": []
-  }
-}
-```
+Documentation evolves alongside the codebase. Contributions are welcome through the public GitHub repository.
+
+<span id="roadmap" />
+
+## Roadmap
+
+### Completed
+
+- Landing Page
+- Litepaper
+- Documentation
+- Dashboard Beta
+- Public GitHub
+
+### In Progress
+
+- Intelligence expansion
+- Dashboard improvements
+
+### Planned
+
+- API
+- SDK
+- Wallet Intelligence
+- Multi-chain support
 
 <span id="faq" />
 
-## Chapter 9: FAQ
+## FAQ
 
 ### What makes OMENA different?
 
-OMENA focuses on intelligence output, not trading execution.
+OMENA focuses on intelligence output, not trading execution. It organizes raw on-chain data into contextual, structured insights.
 
 ### Does OMENA execute transactions?
 
 No. OMENA is an intelligence layer only.
 
-### Does Phase 1 require API keys?
+### Does OMENA require API keys?
 
 No. The dashboard works with mock fallback when live coverage is incomplete.
 
 ### Which live data source is active first?
 
-DexScreener is the first live source in Phase 1.
+DexScreener is the first live source.
 
-<span id="roadmap" />
+### Is OMENA financial advice?
 
-## Chapter 10: Roadmap
+No. All output is informational only and should not be interpreted as financial advice.
 
-1. UI shell and reusable module cards
-2. Mock-backed report flow
-3. DexScreener live market integration
-4. Helius enrichment for behavior and signal depth
-5. Stronger saved analysis and sharing workflows
+### Which chains are supported?
+
+Currently Solana. Multi-chain support is planned.
+
+<span id="changelog" />
+
+## Changelog
+
+Documentation version history for OMENA.
+
+---
+
+### v0.3 — Public Dashboard Beta & Open Source Edition
+
+**Released:** Current
+
+Added Dashboard Beta documentation, GitHub and open source documentation, updated architecture description, expanded intelligence module documentation, onboarding guidance, and full documentation restructuring.
+
+**New in v0.3:**
+- Dashboard Beta section
+- GitHub & Open Source section
+- Installation Guide
+- Project Structure
+- Contributing Guide
+- Expanded Architecture pipeline
+- AI Summary module documentation
+- Security documentation
+- Roadmap status update (Dashboard Beta marked complete)
+- Full section reorganization following recommended table of contents
+
+---
+
+### v0.2 — Phase 1 Dashboard Architecture
+
+**Released:** Prior version
+
+Phase 1 documentation covering the initial token analyzer dashboard architecture, intelligence modules, and API overview.
+
+**Added in v0.2:**
+- Architecture chapter with runtime layers
+- Risk Intelligence module with JSON output schema
+- Behavior Intelligence module
+- Signal Intelligence module
+- Context Intelligence module
+- API Overview (`POST /api/analyze-token`)
+- FAQ section
+- Roadmap chapter
+
+---
+
+### v0.1 — Initial Foundation
+
+**Released:** Early draft
+
+Initial documentation release covering project vision, litepaper outline, and foundational architecture concepts.
+
+**Added in v0.1:**
+- Introduction and project overview
+- Vision statement
+- Why OMENA Exists
+- Initial architecture diagram
+- Litepaper summary
